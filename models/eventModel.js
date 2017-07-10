@@ -3,7 +3,7 @@
 // and a devoured attribute that is false by default
 
 module.exports = function(sequelize, DataTypes) {
-  var Event = sequelize.define("Events", {
+  var Event = sequelize.define("Event", {
     Name: DataTypes.STRING,
     Description: DataTypes.STRING,
     Date: DataTypes.DATE
@@ -17,3 +17,5 @@ module.exports = function(sequelize, DataTypes) {
   });
   return Event;
 };
+
+
