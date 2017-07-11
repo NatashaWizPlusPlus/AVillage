@@ -3,6 +3,7 @@ $(document).ready(function () {
   $('.modal').modal();
   $('#modal').modal('open');
   $('#modal').modal('close');
+  $('select').material_select();
 
   var eventItems = ["Chairs"];
 

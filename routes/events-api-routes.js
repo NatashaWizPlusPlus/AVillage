@@ -9,20 +9,29 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
+
   // GET route for getting all of the events
-  app.get("/api/events", function(req, res) {
-    var query = {};
-    if (req.query.events_search) {
-      query.title = req.query.events_search;
-    }
-    // left outer join for Items
-    db.Events.findAll({
-      where: query,
-      // include: [db.Users]
-    }).then(function(dbEvents) {
-      res.json(dbEvents);
+  // app.get("/api/events", function(req, res) {
+  //   var query = {};
+  //   if (req.query.events_search) {
+  //     query.title = req.query.events_search;
+  //   }
+  //   // left outer join for Items
+  //   db.Events.findAll({
+  //     where: query,
+  //     // include: [db.Users]
+  //   }).then(function(dbEvents) {
+  //     res.json(dbEvents);
+  //   });
+  // });
+
+app.get("/", function (req, res) {
+    db.Events.findAll({}).then(function (data) {
+        var hbsObject = { "Events": data };
+        res.render('index', hbsObject);
     });
-  });
+});
+
   // Get rotue for retrieving a single event
   app.get("/api/events/:id", function(req, res) {
     db.Events.findOne({
