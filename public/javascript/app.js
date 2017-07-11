@@ -1,8 +1,8 @@
-  $(document).ready(function () {
-    $(".button-collapse").sideNav();
-    $('.modal').modal();
-    $('#modal').modal('open');
-    $('#modal').modal('close');
+$(document).ready(function () {
+  $(".button-collapse").sideNav();
+  $('.modal').modal();
+  $('#modal').modal('open');
+  $('#modal').modal('close');
 
   var eventItems = ["Chairs"];
 
@@ -16,8 +16,12 @@
       itemButton.text(eventItems[i]);
       $("#neededItems").append(itemButton);
     }
-  } 
+  }
+
+$("#category").change(function() {
+    $('#category').text(this.val());
+});
 
   initialize();
 
-  })
+})
