@@ -21,27 +21,38 @@
                 </div>
             </div>
             <div class="row">
+                <div class="input-field col s6">
+                    <input id="event_time" type="datetime-local">
+                </div>
+                <div class="input-field col s6">
+                    <select>   
+                    <option value="film">film</option>
+                    <option value="game">game</option>
+                    <option value="music">music</option>
+                    <option value="party">party</option>
+                    <option value="play">play</option>
+                    
+                </select>
+                    <label>Category</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s12">
                     <textarea id="description" class="materialize-textarea"></textarea>
                     <label for="description">Event Description</label>
                 </div>
             </div>
-            <div class="row">
-                {{!--<a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='category'>Drop Me!</a>--}}
-                <a class='dropdown-button btn' href='#' data-activates='category'>Category</a>
-                <!-- Dropdown Structure -->
-                <ul id='category' class='dropdown-content'>
-                    <li value="film">film</li>
-                    <li value="game">game</li>
-                    <li value="music">music</li>
-                    <li value="party">party</li>
-                    <li value="play">play</li>
-                </ul>
-            </div>
-            <div class="row">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
-            </div>
 
-        </form>
+
+
+
+
     </div>
+    {{!--
+    <div class="row">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+    </div>--}}
+
+    </form>
+</div>
 </div>
