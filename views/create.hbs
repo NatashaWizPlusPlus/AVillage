@@ -1,4 +1,7 @@
 <div class="container">
+
+    {{!--#first_name #last_name #eventTitle #description #eventDate--}}
+
     <div class="row">
         <form class="col s12">
             <div class="row">
@@ -28,14 +31,23 @@
                     <label for="date">Event Date</label>
                 </div>
                 <div class="input-field col s2">
-                    <input type="date" class="datepicker">
+                    <input type="date" class="datepicker" id="eventDate">
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
-                    <div id="neededItems">
-                    </div>
-                </div>
+                {{!--<a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='category'>Drop Me!</a>--}}
+                <a class='dropdown-button btn' href='#' data-activates='category'>Category</a>
+                <!-- Dropdown Structure -->
+                <ul id='category' class='dropdown-content'>
+                    <li value="film">film</li>
+                    <li value="game">game</li>
+                    <li value="music">music</li>
+                    <li value="party">party</li>
+                    <li value="play">play</li>
+                </ul>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
             </div>
         </form>
     </div>

@@ -7,11 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/eventID', function(req, res, next) {
-  res.render('event', { title: 'AVillage' });
+  res.render('event', { title: 'Event Information' });
 });
 
 router.get('/create', function(req, res, next) {
-  res.render('create', { title: 'AVillage' });
+  res.render('create', { title: 'Create Event' });
 });
 
 module.exports = router;
