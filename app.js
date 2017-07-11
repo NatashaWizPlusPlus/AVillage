@@ -12,6 +12,9 @@ var users = require('./routes/users');
 
 var app = express();
 
+const passport = require('passport');
+const Auth0Strategy = require('passport-auth0');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -26,6 +29,42 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+// Configure Passport to use Auth0
+const strategy = new Auth0Strategy({
+  domain: 'village.auth0.com',
+  clientID: '5aZR7JZ44XsJ5o2H0ACoN2AXS3GesYwa',
+  clientSecret: 'TjUIe4Z4dWQ5SEACqBH3bMkWKmemf7EmVBo7Xj0zqM2z_v9gMnU6kYmlT03smWby',
+  callbackURL:  'http://localhost:3000/callback'
+}, (accessToken, refreshToken, extraParams, profile, done) => {
+  return done(null, profile);
+});
+
+passport.use(strategy);
+
+// This can be used to keep a smaller payload
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+// ...
+app.use(passport.initialize());
+app.use(passport.session());
+
+// //Google Passport
+// passport.use(new GoogleStrategy({
+//   returnURL:'http://localhost:3000/'
+// },
+// function(identifier, done){
+//   User.findByOpenID({ openId:identifier }, function(err, user){
+//     return done (err, user);
+//   });
+// }
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
