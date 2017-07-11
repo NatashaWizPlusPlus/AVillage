@@ -6,11 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var fs = require('fs');
-
+// Requiring our models for syncing
+var db = require("./models");
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+
+
 var app = express();
+
+//Requiring our routes
+require("./routes/events-api-routes.js")(app);
+require("./routes/users-api-routes.js")(app);
+require("./routes/items-api-routes.js")(app);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,11 +54,39 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-  app.listen(port, function() {
-    console.log("App listening on PORT " + port);
+// Syncing our sequelize models and then starting our express app
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+      
+//Dummy data -- to delete later
+  db.Users.create({
+    name: 'Chris'
   });
+  db.Users.create({
+    name: 'Nick'
+  });
+  db.Events.create({
+    title: 'Event 1',
+    description: 'this is the description for event 1',
+    date: '06/12/2017 10:00 AM',
+    category: 'party',
+  });
+  db.Items.create({
+    title: 'item1',
+    description: 'description of item1',
+    quantity: 4,
+    donated: false
+  });
+
+
+
+  });
+});
+
+
 
 module.exports = app;
 
