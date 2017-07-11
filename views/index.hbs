@@ -1,23 +1,23 @@
 <div class="container">
     <div class="row">
 
+        {{#each Events}}
         <div id="events">
-
-{{!-- Modal Placeholder --}}
+            {{!-- Modal Placeholder --}}
             <div class="col s12 m6">
                 <div class="card small">
                     <div class="card-image">
                         <a href="#modal1"><img src="./images/sample-1.jpg"></a>
-                        <span class="card-title">Event Title and Date</span>
+                        <span class="card-title">{{this.title}} {{this.date}}</span>
                     </div>
                     <div class="card-content">
-                        <p>Event details and needs</p>
-                        <p>Tags</p>
+                        <p>{{this.category}}</p>
                     </div>
                 </div>
             </div>
-
         </div>
+        {{/each}}
+
     </div>
 </div>
 
@@ -46,4 +46,3 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
 </div>
-
