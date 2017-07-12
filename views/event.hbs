@@ -1,22 +1,17 @@
 <div class="container">
 
+{{!-- Needs Dynamic population of title, description and items, as well as letting users add items --}}
+{{!--Need to fix main layout links for this page, as login, filter and add event become unresponsive on this page --}}
     <div class="col s12 m6">
-        <h1>Event Title</h1>
-                <img class="responsive-img" src="./images/sample-1.jpg">
-                <p>Event description. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, aspernatur consequatur
-                    illum natus voluptatum, nam magnam. Velit laborum, similique, deleniti possimus iste delectus ipsam vel
-                    officiis explicabo quidem, dolor quibusdam.</p>
+ 
+        <h1>{{title}}</h1>
+        <img src="../images/sample-1.jpg">
+        <p>{{description}}</p>
 
-                <form action="#">
+        <form action="#">
+            <div id="neededItems">
+            </div>
+        </form>
 
-                    <p>
-                        <input type="checkbox" id="check1" />
-                        <label for="check1">Chairs</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="check2" />
-                        <label for="check2">Robes</label>
-                    </p>
-                </form>
     </div>
 </div>

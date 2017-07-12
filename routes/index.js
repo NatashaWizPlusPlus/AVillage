@@ -6,9 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'AVillage' });
 });
 
-router.get('/eventID', function(req, res, next) {
-  res.render('event', { title: 'Event Information' });
-});
+// router.get('/event/:id', function(req, res, next) {
+//   res.render('event', { title: 'Event Information' });
+// });
 
 router.get('/create', function(req, res, next) {
   res.render('create', { title: 'Create Event' });

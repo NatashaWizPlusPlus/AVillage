@@ -6,7 +6,7 @@
             {{!-- Modal Placeholder --}}
             <div class="col s12 m6">
 
-                <a href="#modal1">
+                <a href="#modal{{this.id}}">
                     <div class="card small">
                         <div class="card-image">
                             <img src="./images/sample-1.jpg">
@@ -21,11 +21,11 @@
         </div>
 
         {{!-- Modal --}}
-        <div id="modal1" class="modal">
+        <div id="modal{{this.id}}" class="modal">
             <div class="modal-content">
                 <h4>{{this.title}}</h4>
                 <img class="responsive-img" src="./images/sample-1.jpg">
-                <a href="eventID" method="GET">Full Event Page</a>
+                <a href="events/{{this.id}}" method="GET">Full Event Page</a>
                 <p>{{this.description}}</p>
             </div>
             <div class="modal-footer">
