@@ -8,7 +8,7 @@ var db = require("../models");
 
 // Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function (app) {
 
   // GET route for getting all of the events
   // app.get("/api/events", function(req, res) {
@@ -25,49 +25,79 @@ module.exports = function(app) {
   //   });
   // });
 
-app.get("/", function (req, res) {
-    db.Events.findAll({}).then(function (data) {
-        var hbsObject = { "Events": data };
-        res.render('index', hbsObject);
+  // app.get("/", function (req, res) {
+  //   db.Events.findAll({}).then(function (data) {
+  //     var hbsObject = { "Events": data };
+  //     res.render('index', hbsObject);
+  //   });
+  // });
+
+  app.get("/", function (req, res) {
+    db.Events.findAll({
+      order: [['date', 'ASC']],
+      include: [db.Items]
+    }).then(function (data) {
+      var hbsObject = { "Events": data };
+      res.render('index', hbsObject);
     });
-});
+  });
 
   // Get rotue for retrieving a single event
-  app.get("/api/events/:id", function(req, res) {
+  // app.get("/api/events/:id", function (req, res) {
+  //   db.Events.findOne({
+  //     where: {
+  //       id: req.params.id
+  //     },
+  //     include: [db.Items]
+  //   }).then(function (dbEvents) {
+  //     res.json(dbEvents);
+  //   });
+  // });
+
+
+  app.get("/events/:id", function (req, res) {
     db.Events.findOne({
       where: {
         id: req.params.id
       },
       include: [db.Items]
-    }).then(function(dbEvents) {
-      res.json(dbEvents);
+    }).then(function (data) {
+      var hbsObject = { "Events": data };
+      res.render('event', hbsObject);
     });
   });
-  // POST route for saving a new event
-  app.post("/api/events", function(req, res) {
-    db.Events.create(req.body).then(function(dbEvents) {
-      res.json(dbEvents);
+
+  // POST route for saving a new event NOt currently working - no errors thrown
+  app.post("/api/events", function (req, res) {
+    db.Events.create({
+      title: req.body.eventTitle,
+      description: req.body.eventDescription,
+      date: req.body.eventDate,
+      category: req.body.category,
+    }).then(function(data) {
+    res.redirect('/');
     });
   });
+
   // DELETE route for deleting events
-  app.delete("/api/events/:id", function(req, res) {
+  app.delete("/api/events/:id", function (req, res) {
     db.Events.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbEvents) {
+    }).then(function (dbEvents) {
       res.json(dbEvents);
     });
   });
   // PUT route for updating events
-  app.put("/api/events", function(req, res) {
+  app.put("/api/events", function (req, res) {
     db.Events.update(
       req.body,
       {
         where: {
           id: req.body.id
         }
-      }).then(function(dbEvents) {
+      }).then(function (dbEvents) {
         res.json(dbEvents);
       });
   });
