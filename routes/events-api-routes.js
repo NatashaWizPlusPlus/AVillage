@@ -62,8 +62,7 @@ module.exports = function (app) {
       },
       include: [db.Items]
     }).then(function (data) {
-      var hbsObject = { "Events": data };
-      res.render('event', hbsObject);
+      res.render('event', data.dataValues);
     });
   });
 
