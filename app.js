@@ -11,14 +11,10 @@ var db = require("./models");
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-
-
 var app = express();
 
-//Requiring our routes
-require("./routes/events-api-routes.js")(app);
-require("./routes/users-api-routes.js")(app);
-require("./routes/items-api-routes.js")(app);
+
+
 
 
 // view engine setup
@@ -33,8 +29,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Requiring our routes
+require("./routes/events-api-routes.js")(app);
+require("./routes/users-api-routes.js")(app);
+require("./routes/items-api-routes.js")(app);
+
 app.use('/', index);
 app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -99,12 +101,8 @@ db.sequelize.sync({ force: true }).then(function () {
       donated: false
     });
 
-
-
   });
 });
-
-
 
 module.exports = app;
 

@@ -10,11 +10,11 @@
 
 <nav>
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo">Logo</a>
+    <a href="/" class="brand-logo">AVillage</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a href="#login">Login</a></li>
-      <li><a class="dropdown-button" href="#!" data-activates="filter">Filter<i class="material-icons right"></i></a></li>
+      <li><a class="dropdown-button" href="!#" data-activates="filter">Filter<i class="material-icons right"></i></a></li>
       <li><a href="create">Add Event</a></li>
 
       <div id="hideLI">
@@ -31,10 +31,18 @@
       <li class="filterOption" value="play">play</li>
     </ul>
 
+    <ul id='mobilefilter' class='dropdown-content'>
+      <li class="filterOption" value="film">film</li>
+      <li class="filterOption" value="game">game</li>
+      <li class="filterOption" value="music">music</li>
+      <li class="filterOption" value="party">party</li>
+      <li class="filterOption" value="play">play</li>
+    </ul>
+
     <ul class="side-nav" id="mobile-demo">
       <li><a href="#login">Login</a></li>
-      <li><a href="badges.html">Filter</a></li>
-      <li><a href="collapsible.html">Add Event</a></li>
+      <li><a class="dropdown-button" href="!#" data-activates="mobilefilter">Filter<i class="material-icons right"></i></a></li>
+      <li><a href="create">Add Event</a></li>
       <li><a href="mobile.html">Mobile</a></li>
     </ul>
   </div>

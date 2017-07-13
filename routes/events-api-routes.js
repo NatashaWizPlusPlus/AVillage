@@ -69,10 +69,11 @@ module.exports = function (app) {
 
   // POST route for saving a new event NOt currently working - no errors thrown
   app.post("/api/events", function (req, res) {
+    console.log(req.body);
     db.Events.create({
       title: req.body.eventTitle,
       description: req.body.eventDescription,
-      date: req.body.eventDate,
+      date: req.body.eventTime,
       category: req.body.category,
     }).then(function(data) {
     res.redirect('/');

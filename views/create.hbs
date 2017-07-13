@@ -3,8 +3,8 @@
     {{! All tags for req.body --#first_name #last_name #eventTitle #eventDescription #eventDate--}}
 
     <div class="row">
-        <form class="col s12">
-            <div class="row">
+        <form class="col s12" action="/api/events" method="POST">
+            {{!--<div class="row">
                 <div class="input-field col s6">
                     <input id="first_name" type="text" class="validate">
                     <label for="first_name">First Name</label>
@@ -13,19 +13,19 @@
                     <input id="last_name" type="text" class="validate">
                     <label for="last_name">Last Name</label>
                 </div>
-            </div>
+            </div>--}}
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="eventTitle" type="text" class="validate">
+                    <input id="eventTitle" name="eventTitle" type="text" class="validate">
                     <label for="eventTitle">Event Title</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="eventtime" type="datetime-local" class="validate">
+                    <input id="eventTime" name="eventTime" type="datetime-local" class="validate">
                 </div>
                 <div class="input-field col s6">
-                    <select id="category">   
+                    <select name="category" id="category">   
                     <option value="film">film</option>
                     <option value="game">game</option>
                     <option value="music">music</option>
@@ -37,11 +37,11 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="eventDescription" class="materialize-textarea"></textarea>
+                    <textarea name="eventDescription" id="eventDescription" class="materialize-textarea"></textarea>
                     <label for="eventDescription">Event Description</label>
                 </div>
                 <div class="input-field col s12">
-                    <button class="btn waves-effect waves-light" type="submit" action="/api/events" method="POST">Submit<i class="material-icons right">send</i></button>
+                    <button class="btn waves-effect waves-light" type="submit">Submit<i class="material-icons right">send</i></button>
                 </div>
             </div>
 
