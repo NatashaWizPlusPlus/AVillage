@@ -10,3 +10,7 @@ a {
 #hideLI {
     display: none;
 }
+
+#EventId{
+  display:none;
+}
