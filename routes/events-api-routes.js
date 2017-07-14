@@ -55,15 +55,15 @@ module.exports = function (app) {
   // });
 
 
-  app.get("/events/:id", function (req, res) {
+app.get("/events/:id", function (req, res) {
     db.Events.findOne({
       where: {
         id: req.params.id
       },
       include: [db.Items]
     }).then(function (data) {
-      var hbsObject = { "Events": data };
-      res.render('event', hbsObject);
+      res.render('event', data.dataValues);
+      console.log(data.dataValues)
     });
   });
 
@@ -79,6 +79,20 @@ module.exports = function (app) {
     res.redirect('/');
     });
   });
+  //   app.get("/api/events", function(req, res) {
+  //   var query = {};
+  //   if (req.query.events_search) {
+  //     query.title = req.query.events_search;
+  //   }
+  //   // left outer join for Items
+  //   db.Events.findAll({
+  //     where: query,
+  //     order: [['date', 'ASC']],
+  //     include: [db.Items]
+  //   }).then(function(dbEvents) {
+  //     res.json(dbEvents);
+  //   });
+  // });
 
   // DELETE route for deleting events
   app.delete("/api/events/:id", function (req, res) {

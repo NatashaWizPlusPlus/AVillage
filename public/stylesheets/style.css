@@ -10,3 +10,11 @@ a {
 #hideLI {
     display: none;
 }
+
+#EventId{
+  display:none;
+}
+
+#events a {
+  color: black;
+}

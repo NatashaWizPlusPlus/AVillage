@@ -5,25 +5,27 @@ $(document).ready(function () {
   $('#modal').modal('close');
   $('select').material_select();
 
-  var eventItems = ["Chairs"];
+  $('#addItem').click(function () {
+    $.put({
+      data: {
+        title: $('#title').val(),
+        description: $('#description').val(),
+        quantity: $('#quantity').val(),
+        EventId: $('EventId').val()
+      },
+      url: '../api/additems',
+      success: function (result) {
+        console.log(result)
+      }
+    });
+  });
 
-  function initialize() {
-    for (var i = 0; i < eventItems.length; i++) {
-      var itemButton = $("<button>");
-      itemButton.addClass("donate");
-      itemButton.addClass("btn");
-      itemButton.addClass("waves-effect");
-      itemButton.addClass("waves-light");
-      itemButton.text(eventItems[i]);
-      $("#neededItems").append(itemButton);
-    }
-  }
 
-$("#category").change(function() {
+  $("#category").change(function () {
     $('#category').text(this.val());
-});
+  });
 
-  initialize();
+
 
 })
 

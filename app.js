@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // var hb = require('express-handlebars');
 
+var methodOverride = require('method-override');
+
+
 var fs = require('fs');
 // Requiring our models for syncing
 var db = require("./models");
@@ -30,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(methodOverride('_method'));
 //Requiring our routes
 require("./routes/events-api-routes.js")(app);
 require("./routes/users-api-routes.js")(app);
@@ -95,12 +98,6 @@ db.sequelize.sync({ force: true }).then(function () {
       description: 'this is the description for event 4',
       date: '06/11/2017 10:00 AM',
       category: 'game',
-    });
-    db.Items.create({
-      title: 'item1',
-      description: 'description of item1',
-      quantity: 4,
-      donated: false
     });
 
   });

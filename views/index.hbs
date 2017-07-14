@@ -10,10 +10,11 @@
                     <div class="card small">
                         <div class="card-image">
                             <img src="./images/sample-1.jpg">
-                            <span class="card-title">{{this.title}} {{this.date}}</span>
+                            <span class="card-title"><h4>{{this.title}}<h4></span>
                         </div>
                         <div class="card-content">
-                            <p>{{this.category}}</p>
+                            <p>Date and Time: {{this.date}}</p>
+                            <p>Category: {{this.category}}</p>
                         </div>
                     </div>
                 </a>
@@ -24,7 +25,7 @@
         <div id="modal{{this.id}}" class="modal">
             <div class="modal-content">
                 <h4>{{this.title}}</h4>
-                <img class="responsive-img" src="./images/sample-1.jpg">
+                {{!--<img class="responsive-img" src="./images/sample-1.jpg">--}}
                 <a href="events/{{this.id}}" method="GET">Full Event Page</a>
                 <p>{{this.description}}</p>
             </div>
