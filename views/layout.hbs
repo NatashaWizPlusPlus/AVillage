@@ -3,17 +3,19 @@
 
 <head>
   <title>{{title}}</title>
+  <script src="https://cdn.auth0.com/js/auth0/8.8/auth0.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  
 </head>
-
+<body>
 <nav>
   <div class="nav-wrapper">
     <a href="/" class="brand-logo">AVillage</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="#login">Login</a></li>
+      <li><a href="login">Login</a></li>
       <li><a class="dropdown-button" href="!#" data-activates="filter">Filter<i class="material-icons right"></i></a></li>
       <li><a href="create">Add Event</a></li>
 
@@ -48,11 +50,11 @@
   </div>
 </nav>
 
-<body>
+
   {{{body}}}
 
-  <div id="login" class="modal">
-    <div class="row">
+  
+    {{!--<div class="row">
       <form class="col s12">
         <div class="row">
           <div class="input-field col s6">
@@ -79,9 +81,8 @@
       </form>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
-    </div>
-  </div>
+      <a href="login" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    </div>--}}
 
 </body>
 
@@ -92,4 +93,112 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 <script type="text/javascript" src="./javascript/app.js"></script>
 
+{{!--This is where the OAuth Modal replaces the login--}}
+{{!--<div id="login" class="modal">--}}
+<script>
+  
+  function login(email, password, callback) {
+  var connection = mysql({
+    host: 'localhost',
+    user: 'root',
+    password: 'rootroot',
+    database: 'project'
+  });
+
+  connection.connect();
+
+  var query = "SELECT id, nickname, email, password " +
+    "FROM users WHERE email = ?";
+
+  connection.query(query, [email], function (err, results) {
+    if (err) return callback(err);
+    if (results.length === 0) return callback(new WrongUsernameOrPasswordError(email));
+    var user = results[0];
+
+    bcrypt.compare(password, user.password, function (err, isValid) {
+      if (err) {
+        callback(err);
+      } else if (!isValid) {
+        callback(new WrongUsernameOrPasswordError(email));
+      } else {
+        callback(null, {
+          id: user.id.toString(),
+          nickname: user.nickname,
+          email: user.email
+        });
+      }
+    });
+
+  });
+}
+
+//This is to create a new user using OAuth and stores this into our project.db
+function create(user, callback) {
+  var connection = mysql({
+    host: 'localhost',
+    user: 'root',
+    password: 'rootroot',
+    database: 'project'
+  });
+
+  connection.connect();
+
+  var query = "INSERT INTO Users SET ?";
+
+  bcrypt.hash(user.password, 10, function (err, hash) {
+    if (err) { return callback(err); }
+    var insert = {
+      password: hash,
+      email: user.email
+    };
+    connection.query(query, insert, function (err, results) {
+      if (err) return callback(err);
+      if (results.length === 0) return callback();
+      callback(null);
+    });
+  });
+
+}
+
+//This is to verify the user through OAuth
+
+function verify (email, callback) {
+  var connection = mysql({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'rootroot',
+    database : 'project'
+  });
+
+  connection.connect();
+
+  var query = "UPDATE users SET email_Verified = true WHERE email_Verified = false AND email = ? ";
+
+  connection.query(query, email, function (err, results) {
+    if (err) return callback(err);
+    if (results.length === 0) return callback();
+
+    callback(null, results.length > 0);
+  });
+
+}
+
+//Callback function to find a user by email-address
+
+function getByEmail (name, callback) {
+  var profile = {
+    user_id:     "103547991597142817347",
+    nickname:    "johnfoo",
+    email:       "johnfoo@gmail.com",
+    name:        "John Foo",
+    given_name:  "John",
+    family_name: "Foo"
+  };
+
+  callback(null, profile);
+}
+
+</script>
+
+{{!--</div>--}}
 </html>
