@@ -55,7 +55,7 @@ module.exports = function (app) {
   // });
 
 
-app.get("/events/:id", function (req, res) {
+  app.get("/events/:id", function (req, res) {
     db.Events.findOne({
       where: {
         id: req.params.id
@@ -75,8 +75,8 @@ app.get("/events/:id", function (req, res) {
       description: req.body.eventDescription,
       date: req.body.eventTime,
       category: req.body.category,
-    }).then(function(data) {
-    res.redirect('/');
+    }).then(function (data) {
+      res.redirect('/');
     });
   });
   //   app.get("/api/events", function(req, res) {
@@ -113,6 +113,7 @@ app.get("/events/:id", function (req, res) {
           id: req.body.id
         }
       }).then(function (dbEvents) {
+        
         res.json(dbEvents);
       });
   });

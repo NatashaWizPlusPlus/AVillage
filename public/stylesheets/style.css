@@ -18,3 +18,7 @@ a {
 #events a {
   color: black;
 }
+
+#hideIEID{
+  display:none;
+}

@@ -75,7 +75,7 @@ module.exports = function (app) {
   // });
   // PUT route for updating Item
   app.put("/items/donate/:id", function (req, res) {
-    db.Items.update({ donated: req.body.donated },
+    db.Items.update({ donated: req.body.donated},
       {
         fields: ['donated'],
         where: {
@@ -83,7 +83,8 @@ module.exports = function (app) {
         }
       }
     ).then(function (data) {
-      res.json(data)
+      res.redirect(req.get('referer'))
+      // res.json(data)
     });
   })
 }
