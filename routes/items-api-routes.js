@@ -8,21 +8,21 @@ var db = require("../models");
 
 // Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function (app) {
   // GET route for getting all of the items
-// app.get("/api/items", function(req, res) {
-//     var query = {};
-//     if (req.query.items_search) {
-//       query.title = req.query.items_search;
-//     }
-//     // left outer join for Items
-//     db.Items.findAll({
-//       where: query,
-//       // include: [db.Users]
-//     }).then(function(dbItems) {
-//       res.json(dbItems);
-//     });
-//   });
+  // app.get("/api/items", function(req, res) {
+  //     var query = {};
+  //     if (req.query.items_search) {
+  //       query.title = req.query.items_search;
+  //     }
+  //     // left outer join for Items
+  //     db.Items.findAll({
+  //       where: query,
+  //       // include: [db.Users]
+  //     }).then(function(dbItems) {
+  //       res.json(dbItems);
+  //     });
+  //   });
   // Get route for retrieving a single item
   // app.get("/api/items/:id", function(req, res) {
   //   db.Items.findOne({
@@ -47,20 +47,22 @@ module.exports = function(app) {
   // });
 
 
-  
+
   // POST route for saving a new item
-  app.post("/api/items", function(req, res) {
+  app.post("/api/items", function (req, res) {
     console.log(req.body);
     db.Items.create({
       title: req.body.title,
       description: req.body.description,
       quantity: req.body.quantity,
-      donated: false,
-      EventId: req.body.EventId
-    }).then(function(data) {
-      res.redirect("/events/" + req.body.EventId);
+      EventId: req.body.EventId,
+      donated: false
+    }).then(function (data) {
+      // res.redirect("/events/" + req.body.EventId);
+      res.json(data);
     });
   });
+
   // DELETE route for deleting Item
   // app.find("/api/items/:id", function(req, res) {
   //   db.Items.destroy({
@@ -72,20 +74,16 @@ module.exports = function(app) {
   //   });
   // });
   // PUT route for updating Item
-app.put("/items/update", function(req, res) {
-  // update one of the burgers
-  console.log("HIIIII");
-  console.log(req.body)
-  db.Items.update({
-    donated: true
-  },
-    {
-      where: {
-        id: req.body.id
+  app.put("/items/donate/:id", function (req, res) {
+    db.Items.update({ donated: req.body.donated },
+      {
+        fields: ['donated'],
+        where: {
+          id: req.params.id
+        }
       }
-    }
-  ).then(function(dbItems) {
-    res.redirect("/");
-  });
-})
+    ).then(function (data) {
+      res.json(data)
+    });
+  })
 }

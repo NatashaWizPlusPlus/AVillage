@@ -14,3 +14,7 @@ a {
 #EventId{
   display:none;
 }
+
+#events a {
+  color: black;
+}

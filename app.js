@@ -97,13 +97,6 @@ db.sequelize.sync({ force: true }).then(function () {
       date: '06/11/2017 10:00 AM',
       category: 'game',
     });
-    db.Items.create({
-      title: 'item1',
-      description: 'description of item1',
-      quantity: 4,
-      donated: false,
-      EventId:1
-    });
 
   });
 });
