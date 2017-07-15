@@ -18,11 +18,18 @@ router.get('/create', function(req, res, next) {
 });
 
 
+const env = {
+  AUTH0_CLIENT_ID: 'KZgl1fB7QhYwHXd0XIU4Wn6gGxnKTfe6',
+  AUTH0_DOMAIN: 'village.auth0.com',
+  AUTH0_CALLBACK_URL: 'http://localhost:3000/callback'
+};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
+
+
 
 router.get(
   '/login',
@@ -50,7 +57,7 @@ router.get(
     failureRedirect: '/'
   }),
   function(req, res) {
-    res.redirect(req.session.returnTo || '/user');
+    res.redirect(req.session.returnTo || '/users');
   }
 );
 

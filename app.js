@@ -26,6 +26,9 @@ app.set('views', path.join(__dirname, 'views'));
 // app.engine ('hbs', hb({defaultLayout:'layout'}));
 app.set('view engine', 'hbs');
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -41,6 +44,8 @@ require("./routes/items-api-routes.js")(app);
 
 app.use('/', index);
 app.use('/users', users);
+
+
 
 
 // catch 404 and forward to error handler
@@ -113,6 +118,7 @@ const strategy = new Auth0Strategy({
   return done(null, profile);
 });
 
+
 passport.use(strategy);
 
 // This can be used to keep a smaller payload
@@ -125,8 +131,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 // ...
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 module.exports = app;
 
