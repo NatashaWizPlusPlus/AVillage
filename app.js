@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+
+
 // var hb = require('express-handlebars');
 
 var methodOverride = require('method-override');
@@ -61,7 +64,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2000;
 
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync({ force: true }).then(function () {
@@ -75,29 +78,73 @@ db.sequelize.sync({ force: true }).then(function () {
     db.Users.create({
       name: 'Nick'
     });
-    db.Events.create({
+
+   
+    db.Categories.create({
+      name: 'film',
+      imgURL: './images/film.png'
+    });
+    db.Categories.create({
+      name: 'game',
+      imgURL: './images/game.png'
+    });
+    db.Categories.create({
+      name: 'music',
+      imgURL: './images/music.png'
+    });
+    db.Categories.create({
+      name: 'party',
+      imgURL: './images/party.png'
+    });
+    db.Categories.create({
+      name: 'play',
+      imgURL: './images/play.png'
+    });
+    db.Categories.create({
+      name: 'art',
+      imgURL: './images/art.png'
+    });
+        db.Events.create({
       title: 'Event 1',
       description: 'this is the description for event 1',
       date: '06/12/2017 10:00 AM',
-      category: 'party',
+      category: 'film',
+      CategoryId: '1'
     });
     db.Events.create({
       title: 'Event 2',
       description: 'this is the description for event 2',
       date: '06/13/2017 10:00 AM',
-      category: 'film',
+      category: 'game',
+      CategoryId: '2'
     });
     db.Events.create({
       title: 'Event 3',
       description: 'this is the description for event 3',
       date: '06/14/2017 10:00 AM',
-      category: 'play',
+      category: 'music',
+      CategoryId: '3'
     });
     db.Events.create({
       title: 'Event 4',
       description: 'this is the description for event 4',
       date: '06/11/2017 10:00 AM',
-      category: 'game',
+      category: 'party',
+      CategoryId: '4'
+    });
+    db.Events.create({
+      title: 'Event 5',
+      description: 'this is the description for event 5',
+      date: '06/11/2017 10:00 AM',
+      category: 'play',
+      CategoryId: '5'
+    });
+    db.Events.create({
+      title: 'Event 6',
+      description: 'this is the description for event 6',
+      date: '06/11/2017 10:00 AM',
+      category: 'art',
+      CategoryId: '6'
     });
 
   });

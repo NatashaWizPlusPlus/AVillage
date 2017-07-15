@@ -18,19 +18,24 @@ module.exports = function(sequelize, DataTypes) {
     },
     category: {
       type: DataTypes.STRING,
+      // references: "Categories",
+      // referencesKey: "name",
       allowNull: false 
     }
-  }  );
+  });
 
    Events.associate = function(models) {
-    // Using additional options like CASCADE etc for demonstration
-    // Can also simply do Task.belongsTo(models.User);
-    Events.belongsTo(models.Users, {
-      onDelete: "CASCADE",
-    });
-    Events.hasMany(models.Items, {
-      onDelete: "CASCADE"
-    });
+      Events.belongsTo(models.Users, {
+        onDelete: "CASCADE",
+      });
+      Events.belongsTo(models.Categories, {
+        // foreignKey: "category",  
+        // targetKey: "name",
+        onDelete: "CASCADE"
+      });
+      Events.hasMany(models.Items, {
+        onDelete: "CASCADE"
+      });
   }
   // , 
   //   {

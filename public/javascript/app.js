@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 
   $("#category").change(function () {
-    $('#category').text(this.val());
+    // $('#category').text(this.val());
   });
 
 

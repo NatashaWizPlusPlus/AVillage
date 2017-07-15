@@ -35,7 +35,8 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     db.Events.findAll({
       order: [['date', 'ASC']],
-      include: [db.Items]
+      include: [db.Items],
+      include: [db.Categories]
     }).then(function (data) {
       var hbsObject = { "Events": data };
       res.render('index', hbsObject);
@@ -75,8 +76,10 @@ app.get("/events/:id", function (req, res) {
       description: req.body.eventDescription,
       date: req.body.eventTime,
       category: req.body.category,
+      CategoryId: req.body.categoryID
     }).then(function(data) {
-    res.redirect('/');
+    // res.redirect('/');
+    res.json(data);
     });
   });
   //   app.get("/api/events", function(req, res) {
