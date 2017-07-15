@@ -22,3 +22,23 @@ a {
 #hideIEID{
   display:none;
 }
+
+body {
+    background-image: url("../images/circles-and-roundabouts.png");  
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.brand-logo{
+  background-image: url("../images/logo.jpg");
+}
+
+h4 {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.card:hover { 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

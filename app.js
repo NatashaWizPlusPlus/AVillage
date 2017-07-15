@@ -106,45 +106,45 @@ db.sequelize.sync({ force: true }).then(function () {
       name: 'art',
       imgURL: './images/art.png'
     });
-        db.Events.create({
-      title: 'Event 1',
+    db.Events.create({
+      title: 'Hip-Hop Video Shoot!',
       description: 'this is the description for event 1',
-      date: '06/12/2017 10:00 AM',
+      date: '08/12/2017 10:00 AM',
       category: 'film',
       CategoryId: '1'
     });
     db.Events.create({
-      title: 'Event 2',
+      title: 'Giant Game of Capture the Flag!',
       description: 'this is the description for event 2',
-      date: '06/13/2017 10:00 AM',
+      date: '08/13/2017 1:00 PM',
       category: 'game',
       CategoryId: '2'
     });
     db.Events.create({
-      title: 'Event 3',
+      title: '100 People Playing Guitar at the Beach!',
       description: 'this is the description for event 3',
-      date: '06/14/2017 10:00 AM',
+      date: '08/14/2017 09:00 PM',
       category: 'music',
       CategoryId: '3'
     });
     db.Events.create({
-      title: 'Event 4',
+      title: 'Neighborhood Potluck',
       description: 'this is the description for event 4',
-      date: '06/11/2017 10:00 AM',
+      date: '09/11/2017 10:30 PM',
       category: 'party',
       CategoryId: '4'
     });
     db.Events.create({
-      title: 'Event 5',
+      title: 'A Midsummer Night'+"'"+ 's Dream - In the Park',
       description: 'this is the description for event 5',
-      date: '06/11/2017 10:00 AM',
+      date: '10/11/2017 12:00 PM',
       category: 'play',
       CategoryId: '5'
     });
     db.Events.create({
-      title: 'Event 6',
+      title: 'New Gallery Opening Event!',
       description: 'this is the description for event 6',
-      date: '06/11/2017 10:00 AM',
+      date: '12/11/2017 11:20 AM',
       category: 'art',
       CategoryId: '6'
     });
