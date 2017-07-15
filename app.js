@@ -157,7 +157,7 @@ const strategy = new Auth0Strategy({
   domain: 'village.auth0.com',
   clientID: '5aZR7JZ44XsJ5o2H0ACoN2AXS3GesYwa',
   clientSecret: 'TjUIe4Z4dWQ5SEACqBH3bMkWKmemf7EmVBo7Xj0zqM2z_v9gMnU6kYmlT03smWby',
-  callbackURL:  'http://localhost:3000/callback'
+  callbackURL:  '/callback'
 }, (accessToken, refreshToken, extraParams, profile, done) => {
   return done(null, profile);
 });
