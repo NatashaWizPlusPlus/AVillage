@@ -3,7 +3,7 @@
     {{! All tags for req.body --#first_name #last_name #eventTitle #eventDescription #eventDate--}}
 
     <div class="row">
-        <form class="col s12" action="/api/events" method="POST">
+        {{!--<form class="col s12" action="/api/events" method="POST">--}}
             {{!--<div class="row">
                 <div class="input-field col s6">
                     <input id="first_name" type="text" class="validate">
@@ -49,3 +49,28 @@
     </form>
 </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#createEvent').click(function () {
+            console.log($('#category option:selected').attr('categoryid'));
+            $.post({
+                data: {
+                    eventTitle: $('#eventTitle').val(),
+                    eventTime: $('#eventTime').val(),
+                    category: $('#category').val(),
+                    eventDescription: $('#eventDescription').val(),
+                    categoryID: $('#category option:selected').attr('categoryid'),
+                },
+                url: '/api/events',
+                success: function (result) {
+                    console.log(result);
+                
+                   // $("#neededItems").load(window.location.href + " #neededItems");
+                }
+            });
+        });
+
+    })
+
+</script>

@@ -28,6 +28,9 @@ module.exports = function(sequelize, DataTypes) {
     Events.belongsTo(models.Users, {
       onDelete: "CASCADE",
     });
+    Events.belongsTo(models.Categories, {
+        onDelete: "CASCADE"
+      });
     Events.hasMany(models.Items, {
       onDelete: "CASCADE"
     });
