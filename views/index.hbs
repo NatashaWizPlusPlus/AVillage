@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container background">
     <div class="row">
 
         {{#each Events}}
@@ -24,7 +24,7 @@
         {{!-- Modal --}}
         <div id="modal{{this.id}}" class="modal">
             <div class="modal-content">
-                <h4>{{this.title}}</h4>
+                <h4 class="dropshadow">{{this.title}}</h4>
                 {{!--<img class="responsive-img" src="./images/sample-1.jpg">--}}
                 <a href="events/{{this.id}}" method="GET">Full Event Page</a>
                 <p>{{this.description}}</p>
