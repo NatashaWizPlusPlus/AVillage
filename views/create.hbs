@@ -26,11 +26,12 @@
                 </div>
                 <div class="input-field col s6">
                     <select name="category" id="category">   
-                    <option value="film">film</option>
-                    <option value="game">game</option>
-                    <option value="music">music</option>
-                    <option value="party">party</option>
-                    <option value="play">play</option>        
+                    <option value="film" categoryid="1">film</option>
+                    <option value="game" categoryid="2">game</option>
+                    <option value="music" categoryid="3">music</option>
+                    <option value="party" categoryid="4">party</option>
+                    <option value="play" categoryid="5">play</option>
+                    <option value="play" categoryid="6">art</option>         
                 </select>
                     <label>Category</label>
                 </div>
@@ -41,7 +42,7 @@
                     <label for="eventDescription">Event Description</label>
                 </div>
                 <div class="input-field col s12">
-                    <button class="btn waves-effect waves-light" type="submit">Submit<i class="material-icons right">send</i></button>
+                    <button class="btn waves-effect waves-light" type="submit" id="createEvent">Submit<i class="material-icons right">send</i></button>
                 </div>
             </div>
 
@@ -49,6 +50,8 @@
     </form>
 </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function () {
@@ -65,7 +68,7 @@
                 url: '/api/events',
                 success: function (result) {
                     console.log(result);
-                
+                    window.location.href="/"
                    // $("#neededItems").load(window.location.href + " #neededItems");
                 }
             });

@@ -78,7 +78,7 @@ module.exports = function (app) {
       category: req.body.category,
       CategoryId: req.body.categoryID
     }).then(function (data) {
-      res.redirect('/');
+      res.json(data);
     });
   });
   //   app.get("/api/events", function(req, res) {
